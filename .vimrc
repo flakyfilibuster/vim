@@ -17,6 +17,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 " Initialize plugin system
 call plug#end()
@@ -181,6 +183,12 @@ vnoremap <tab> %
 "specific rules for different filetypes
 autocmd FileType ruby,eruby,cucumber,python,yaml,scss,less,jade,todo setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FZF mapping
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <C-p> :FZF<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tab behaviour - needed to change from t to f, because netrw
@@ -188,6 +196,7 @@ autocmd FileType ruby,eruby,cucumber,python,yaml,scss,less,jade,todo setlocal ta
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprev<CR>
+nnoremap <C-n> :tabnew<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -246,3 +255,6 @@ let g:gitgutter_eager = 0
 " javascript-libraries-syntax
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,react,jasmine,handlebars'
+
+let g:jsx_ext_required = 0
+
