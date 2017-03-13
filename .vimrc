@@ -1,4 +1,3 @@
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-Plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -28,11 +27,15 @@ Plug 'airblade/vim-gitgutter'
 " quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
 
-" netrw enhancements
-Plug 'tpope/vim-vinegar'
+" nerdtree tree view
+Plug 'scrooloose/nerdtree'
 
 " vim quantum theme
 Plug 'tyrannicaltoucan/vim-quantum'
+
+" typescript
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Quramy/tsuquyomi'
 
 " syntax plugins
 Plug 'pangloss/vim-javascript'
@@ -203,6 +206,9 @@ vnoremap <tab> %
 "specific rules for different filetypes
 autocmd FileType ruby,eruby,cucumber,python,yaml,scss,less,jade,todo setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
+" refresh netrw list
+nnoremap <C-k> :e .<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF config
 
@@ -231,12 +237,38 @@ let g:NERDTrimTrailingWhitespace = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Filehighlighting
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#263238')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#263238')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#263238')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#263238')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#263238')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#263238')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#263238')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#263238')
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tab behaviour - needed to change from t to f, because netrw
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprev<CR>
 nnoremap <C-n> :tabnew<CR>
+nnoremap <C-j> :tabm 0<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
