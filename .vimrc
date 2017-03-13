@@ -16,12 +16,25 @@ Plug 'Raimondi/delimitMate'
 " quick commenting of code
 Plug 'scrooloose/nerdcommenter'
 
+" git vim plugin
 Plug 'tpope/vim-fugitive'
+
+" bottom status bar
 Plug 'bling/vim-airline'
+
+" show linechanges next to line number
 Plug 'airblade/vim-gitgutter'
+
+" quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
+
+" netrw enhancements
 Plug 'tpope/vim-vinegar'
+
+" vim quantum theme
 Plug 'tyrannicaltoucan/vim-quantum'
+
+" syntax plugins
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
@@ -252,7 +265,6 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " Aliases
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:command Us UltiSnipsEdit
 :command Gw Gwrite
 :command Gc Gcommit
 :command Gp Gpush
