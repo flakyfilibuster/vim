@@ -6,11 +6,16 @@
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+" fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" auto-completion for quotes, parens, brackets
 Plug 'Raimondi/delimitMate'
+
+" quick commenting of code
 Plug 'scrooloose/nerdcommenter'
+
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'airblade/vim-gitgutter'
@@ -19,6 +24,8 @@ Plug 'tpope/vim-vinegar'
 Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -184,10 +191,30 @@ vnoremap <tab> %
 autocmd FileType ruby,eruby,cucumber,python,yaml,scss,less,jade,todo setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FZF mapping
+" FZF config
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <C-p> :FZF<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Nerdcommenter config
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
