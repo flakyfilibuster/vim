@@ -30,6 +30,9 @@ Plug 'tpope/vim-surround'
 " nerdtree tree view
 Plug 'scrooloose/nerdtree'
 
+" easymotion
+Plug 'easymotion/vim-easymotion'
+
 " vim quantum theme
 Plug 'tyrannicaltoucan/vim-quantum'
 
@@ -50,6 +53,9 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General VIM settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Space is my leader!
+let mapleader = "\<Space>"
 
 " Enable matchit.vim, which ships with Vim but isn't enabled by default
 " " somehow
@@ -182,9 +188,9 @@ set ruler
 "turn off line wrapping
 set nowrap
 
-"default tab = 4
+" tabbehavior
 set tabstop=2
-
+set softtabstop=2
 set shiftwidth=2
 
 " make backspace work like most other apps
@@ -202,12 +208,6 @@ nnoremap <leader><space> :noh<cr>
 "tab to matched bracket pairs
 nnoremap <tab> %
 vnoremap <tab> %
-
-"specific rules for different filetypes
-autocmd FileType ruby,eruby,cucumber,python,yaml,scss,less,jade,todo setlocal tabstop=2 softtabstop=2 shiftwidth=2
-
-" refresh netrw list
-nnoremap <C-k> :e .<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF config
