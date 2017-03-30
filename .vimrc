@@ -40,11 +40,15 @@ Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Quramy/tsuquyomi'
 
+" emmet
+Plug 'mattn/emmet-vim'
+
 " syntax plugins
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'slim-template/vim-slim'
 
 " Initialize plugin system
 call plug#end()
