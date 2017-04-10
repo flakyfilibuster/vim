@@ -45,7 +45,6 @@ Plug 'mattn/emmet-vim'
 
 " syntax plugins
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'slim-template/vim-slim'
@@ -61,8 +60,11 @@ call plug#end()
 " Space is my leader!
 let mapleader = "\<Space>"
 
-" Enable matchit.vim, which ships with Vim but isn't enabled by default
-" " somehow
+" toggle paste mode
+nnoremap <leader>p :set paste!<cr>:set paste?<cr>
+
+" Enable matchit.vim,
+" which ships with Vim but isn't enabled by default somehow
 runtime macros/matchit.vim
 
 "paste shit
@@ -212,6 +214,10 @@ nnoremap <leader><space> :noh<cr>
 "tab to matched bracket pairs
 nnoremap <tab> %
 vnoremap <tab> %
+
+" remap ESC to Ctrl+[ - touchbar and such
+imap <C-[> <esc>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF config
