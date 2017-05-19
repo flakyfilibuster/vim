@@ -281,16 +281,6 @@ call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#263238')
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tab behaviour - needed to change from t to f, because netrw
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-h> :tabprev<CR>
-nnoremap <C-n> :tabnew<CR>
-nnoremap <C-j> :tabm 0<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Store swapfiles in .vim/tmp folder
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
