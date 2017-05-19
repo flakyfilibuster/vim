@@ -45,8 +45,7 @@ Plug 'mattn/emmet-vim'
 
 " syntax plugins
 Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mxw/vim-jsx'
 Plug 'slim-template/vim-slim'
 
 " Initialize plugin system
@@ -62,6 +61,8 @@ let mapleader = "\<Space>"
 
 " toggle paste mode
 nnoremap <leader>p :set paste!<cr>:set paste?<cr>
+
+iab xtime <c-r>=strftime("%H:%M")<cr>
 
 " Enable matchit.vim,
 " which ships with Vim but isn't enabled by default somehow
@@ -218,6 +219,11 @@ vnoremap <tab> %
 " remap ESC to Ctrl+[ - touchbar and such
 imap <C-[> <esc>
 
+" vim-jsx should also work for .js extension
+let g:jsx_ext_required = 0
+
+" newline without entering insert mode
+:nnoremap <NL> i<CR><ESC>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF config
@@ -339,6 +345,3 @@ let g:gitgutter_eager = 0
 " javascript-libraries-syntax
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,react,jasmine,handlebars'
-
-let g:jsx_ext_required = 0
-
