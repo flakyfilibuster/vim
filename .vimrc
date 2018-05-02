@@ -18,6 +18,9 @@ Plug 'scrooloose/nerdcommenter'
 " git vim plugin
 Plug 'tpope/vim-fugitive'
 
+" vim ag plugin
+Plug 'rking/ag.vim'
+
 " bottom status bar
 Plug 'bling/vim-airline'
 
@@ -36,12 +39,11 @@ Plug 'easymotion/vim-easymotion'
 " vim quantum theme
 Plug 'tyrannicaltoucan/vim-quantum'
 
-" typescript
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'Quramy/tsuquyomi'
-
 " emmet
 Plug 'mattn/emmet-vim'
+
+" ale
+Plug 'w0rp/ale'
 
 " syntax plugins
 Plug 'pangloss/vim-javascript'
