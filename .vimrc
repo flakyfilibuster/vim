@@ -237,7 +237,9 @@ let g:jsx_ext_required = 0
 " FZF config
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <C-p> :FZF<CR>
+" does a search, respecting .gitignore
+nnoremap <c-p> :GFiles<cr>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-test config
