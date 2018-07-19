@@ -5,6 +5,15 @@
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
+" colors!!!
+Plug 'flazz/vim-colorschemes'
+
+" vim onehalf theme
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+"
+" vim quantum theme
+Plug 'tyrannicaltoucan/vim-quantum'
+
 " fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -41,9 +50,6 @@ Plug 'scrooloose/nerdtree'
 
 " easymotion
 Plug 'easymotion/vim-easymotion'
-
-" vim quantum theme
-Plug 'tyrannicaltoucan/vim-quantum'
 
 " emmet
 Plug 'mattn/emmet-vim'
@@ -121,7 +127,9 @@ syntax enable
 
 "colorscheme
 """"""""""""""""""
-colorscheme quantum
+colorscheme onehalflight
+" let g:airline_theme='onehalflight'
+
 
 "let netrw ignore swapfile
 let g:netrw_list_hide= '.*\.swp$'
@@ -298,14 +306,14 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#263238')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#263238')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#263238')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#263238')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#263238')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#263238')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#263238')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#263238')
+call NERDTreeHighlightFile('md', 'NONE', 'NONE', '#0184bc', 'NONE')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', '#a626a4', 'NONE')
+call NERDTreeHighlightFile('config', 'yellow', 'none', '#50a14f', 'NONE')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', '#50a14f', 'NONE')
+call NERDTreeHighlightFile('json', 'yellow', 'none', '#e45649', 'NONE')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', 'NONE')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', 'NONE')
+call NERDTreeHighlightFile('js', 'NONE', 'NONE', '#c18401', 'NONE')
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
