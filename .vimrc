@@ -127,9 +127,7 @@ syntax enable
 
 "colorscheme
 """"""""""""""""""
-colorscheme onehalflight
-" let g:airline_theme='onehalflight'
-
+colorscheme gruvbox
 
 "let netrw ignore swapfile
 let g:netrw_list_hide= '.*\.swp$'
