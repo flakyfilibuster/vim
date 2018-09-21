@@ -5,12 +5,6 @@
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
-" colors!!!
-Plug 'flazz/vim-colorschemes'
-
-" vim onehalf theme
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
-"
 " vim quantum theme
 Plug 'tyrannicaltoucan/vim-quantum'
 
@@ -18,17 +12,11 @@ Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" tests
-Plug 'janko-m/vim-test'
-
 " auto-completion for quotes, parens, brackets
 Plug 'Raimondi/delimitMate'
 
 " quick commenting of code
 Plug 'scrooloose/nerdcommenter'
-
-" asynchronous jobs
-Plug 'tpope/vim-dispatch'
 
 " git vim plugin
 Plug 'tpope/vim-fugitive'
@@ -47,9 +35,6 @@ Plug 'tpope/vim-surround'
 
 " nerdtree tree view
 Plug 'scrooloose/nerdtree'
-
-" easymotion
-Plug 'easymotion/vim-easymotion'
 
 " emmet
 Plug 'mattn/emmet-vim'
@@ -123,11 +108,12 @@ set ttyscroll=3
 set lazyredraw
 
 "syntax highlighting
-syntax enable
+syntax on
 
 "colorscheme
 """"""""""""""""""
-colorscheme gruvbox
+set background=dark
+colorscheme quantum
 
 "let netrw ignore swapfile
 let g:netrw_list_hide= '.*\.swp$'
@@ -369,3 +355,16 @@ let g:gitgutter_eager = 0
 " javascript-libraries-syntax
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,react,jasmine,handlebars'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ale config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" only lint when file is saved
+let g:ale_lint_on_text_changed = 'never'
+
+" always leave the signgutter open
+let g:ale_sign_column_always = 1
+
+let g:ale_sign_error = '💩'
+let g:ale_sign_warning = '⚠️'
