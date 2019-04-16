@@ -5,6 +5,12 @@
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
+" ultisnips
+Plug 'SirVer/ultisnips'
+
+" snippet lib
+Plug 'honza/vim-snippets'
+
 " vim quantum theme
 Plug 'tyrannicaltoucan/vim-quantum'
 
@@ -20,9 +26,6 @@ Plug 'scrooloose/nerdcommenter'
 
 " git vim plugin
 Plug 'tpope/vim-fugitive'
-
-" vim ag plugin
-Plug 'rking/ag.vim'
 
 " bottom status bar
 Plug 'bling/vim-airline'
@@ -366,5 +369,30 @@ let g:ale_lint_on_text_changed = 'never'
 " always leave the signgutter open
 let g:ale_sign_column_always = 1
 
+" fix.. on.. save..
+let g:ale_fix_on_save = 1
+
 let g:ale_sign_error = '💩'
 let g:ale_sign_warning = '⚠️'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UltiSnip config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ripgrep config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use ripgrep with fzz as :grep
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+endif
+
+" automatically open Quickfix with results
+augroup myvimrc
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l*    lwindow
+augroup END
