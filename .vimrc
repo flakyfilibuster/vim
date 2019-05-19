@@ -8,10 +8,7 @@ call plug#begin('~/.vim/plugged')
 " ultisnips
 Plug 'SirVer/ultisnips'
 
-" snippet lib
-Plug 'honza/vim-snippets'
-
-" vim quantum theme
+" vim themes
 Plug 'tyrannicaltoucan/vim-quantum'
 
 " fuzzy finder
@@ -23,9 +20,6 @@ Plug 'Raimondi/delimitMate'
 
 " quick commenting of code
 Plug 'scrooloose/nerdcommenter'
-
-" git vim plugin
-Plug 'tpope/vim-fugitive'
 
 " bottom status bar
 Plug 'bling/vim-airline'
@@ -39,16 +33,23 @@ Plug 'tpope/vim-surround'
 " nerdtree tree view
 Plug 'scrooloose/nerdtree'
 
+" easy-motion
+Plug 'easymotion/vim-easymotion'
+
 " emmet
 Plug 'mattn/emmet-vim'
 
-" ale
-Plug 'w0rp/ale'
+" A Vim plugin that always highlights the enclosing tags
+Plug 'Valloric/MatchTagAlways'
 
 " syntax plugins
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'slim-template/vim-slim'
+Plug 'sheerun/vim-polyglot'
+Plug 'ianks/vim-tsx'
+Plug 'HerringtonDarkholme/yats.vim'
+
+" intellisense
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+
 
 " Initialize plugin system
 call plug#end()
@@ -64,6 +65,7 @@ let mapleader = "\<Space>"
 " toggle paste mode
 nnoremap <leader>p :set paste!<cr>:set paste?<cr>
 
+" writing 'xtime' will be replaced with a timestamp
 iab xtime <c-r>=strftime("%H:%M")<cr>
 
 " Enable matchit.vim,
@@ -72,6 +74,9 @@ runtime macros/matchit.vim
 
 "paste shit
 :imap <D-V> ^O"+p
+
+" show signcolumn at all times
+:set signcolumn=yes
 
 "force me to think VIM
 nnoremap <up> <nop>
@@ -105,7 +110,9 @@ set scrolloff=3
 "MAKE VIM FASTER
 "faster terminal
 set ttyfast
-set ttyscroll=3
+if !has('nvim')
+  set ttyscroll=3
+endif
 
 "avoid scrolling problems"
 set lazyredraw
@@ -113,13 +120,12 @@ set lazyredraw
 "syntax highlighting
 syntax on
 
+"clipboard
+set clipboard=unnamed
+
 "colorscheme
 """"""""""""""""""
-set background=dark
-colorscheme quantum
-
-"let netrw ignore swapfile
-let g:netrw_list_hide= '.*\.swp$'
+color quantum
 
 " Highlight found items
 set hlsearch
@@ -139,7 +145,7 @@ set noswapfile
 set cursorline
 
 "visual reminder of line length
-set colorcolumn=80
+set colorcolumn=100
 
 "displays line numbers
 set number
@@ -149,10 +155,6 @@ set expandtab
 
 "incremental search: search begins while typing
 set incsearch
-
-"case insensitive search
-set ignorecase
-set smartcase
 
 "Opens a vertical split and switches over (\v)
 nnoremap <leader>v <C-w>v<C-w>l
@@ -185,9 +187,6 @@ set encoding=utf-8
 hi CursorLine   cterm=NONE
 
 filetype plugin indent on
-
-"set directory list style to 'tree'
-let g:netrw_liststyle= 3
 
 "enable statusline which shows filename/path and current line and column
 set laststatus=2
@@ -234,22 +233,6 @@ let g:jsx_ext_required = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " does a search, respecting .gitignore
 nnoremap <c-p> :GFiles<cr>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-test config
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" make sure to show the test underneath the file
-let g:test#preserve_screen = 1
-let test#strategy = "dispatch"
-
-" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
-nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
-nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
-nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
-nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
-nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -301,6 +284,8 @@ call NERDTreeHighlightFile('json', 'yellow', 'none', '#e45649', 'NONE')
 call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', 'NONE')
 call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', 'NONE')
 call NERDTreeHighlightFile('js', 'NONE', 'NONE', '#c18401', 'NONE')
+call NERDTreeHighlightFile('ts', 'NONE', 'NONE', '#00c6aa', 'NONE')
+call NERDTreeHighlightFile('tsx', 'NONE', 'NONE', '#00eeff', 'NONE')
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -329,10 +314,6 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " Aliases
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:command Gw Gwrite
-:command Gc Gcommit
-:command Gp Gpush
-:command Gb Gblame
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -355,32 +336,45 @@ let g:gitgutter_eager = 0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" javascript-libraries-syntax
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,react,jasmine,handlebars'
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ale config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" only lint when file is saved
-let g:ale_lint_on_text_changed = 'never'
-
-" always leave the signgutter open
-let g:ale_sign_column_always = 1
-
-" fix.. on.. save..
-let g:ale_fix_on_save = 1
-
-let g:ale_sign_error = '💩'
-let g:ale_sign_warning = '⚠️'
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnip config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Coc config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Better display for messages
+set cmdheight=2
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+nmap <leader>dd <Plug>(coc-definition)
+nmap <leader>dr <Plug>(coc-references)
+nmap <leader>dj <Plug>(coc-implementation)
+nmap <leader>dt <Plug>(coc-type-definition)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ripgrep config
@@ -396,3 +390,18 @@ augroup myvimrc
     autocmd QuickFixCmdPost [^l]* cwindow
     autocmd QuickFixCmdPost l*    lwindow
 augroup END
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MatchTagAlways
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:mta_filetypes = {
+    \'typescript.tsx': 1,
+    \'javascript.jsx': 1,
+    \ 'html' : 1,
+    \ 'xml' : 1,
+\}
+
+let g:mta_use_matchparen_group = 0
+let g:mta_set_default_matchtag_color = 0
+
+highlight MatchTag ctermfg=black ctermbg=gray guifg=black guibg=gray
