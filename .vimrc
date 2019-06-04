@@ -83,6 +83,8 @@ runtime macros/matchit.vim
 " show signcolumn at all times
 :set signcolumn=yes
 
+" spellcheck!
+:setlocal spell spelllang=en_us
 
 "force me to think VIM
 nnoremap <up> <nop>
