@@ -30,6 +30,12 @@ Plug 'airblade/vim-gitgutter'
 " quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
 
+" git wrapper
+Plug 'tpope/vim-fugitive'
+
+" Gbrowse github
+Plug 'tpope/vim-rhubarb'
+
 " nerdtree tree view
 Plug 'scrooloose/nerdtree'
 
@@ -45,7 +51,6 @@ Plug 'Valloric/MatchTagAlways'
 " syntax plugins
 Plug 'sheerun/vim-polyglot'
 Plug 'ianks/vim-tsx'
-Plug 'HerringtonDarkholme/yats.vim'
 
 " intellisense
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
@@ -77,6 +82,7 @@ runtime macros/matchit.vim
 
 " show signcolumn at all times
 :set signcolumn=yes
+
 
 "force me to think VIM
 nnoremap <up> <nop>
@@ -404,4 +410,4 @@ let g:mta_filetypes = {
 let g:mta_use_matchparen_group = 0
 let g:mta_set_default_matchtag_color = 0
 
-highlight MatchTag ctermfg=black ctermbg=gray guifg=black guibg=gray
+highlight MatchTag ctermfg=white ctermbg=NONE guifg=white guibg=NONE
