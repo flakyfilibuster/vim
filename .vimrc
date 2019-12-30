@@ -83,9 +83,6 @@ runtime macros/matchit.vim
 " show signcolumn at all times
 :set signcolumn=yes
 
-" spellcheck!
-:setlocal spell spelllang=en_us
-
 "force me to think VIM
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -274,6 +271,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " toggle
 map <C-n> :NERDTreeToggle<CR>
 
+" reveal current file in tree
+map <C-m> :NERDTreeFind<CR>
+
 " show hidden files
 let NERDTreeShowHidden=1
 
@@ -356,7 +356,7 @@ let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 set cmdheight=2
 
 " Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
+set updatetime=200
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
