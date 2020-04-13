@@ -45,9 +45,6 @@ Plug 'easymotion/vim-easymotion'
 " emmet
 Plug 'mattn/emmet-vim'
 
-" A Vim plugin that always highlights the enclosing tags
-Plug 'Valloric/MatchTagAlways'
-
 " syntax plugins
 Plug 'sheerun/vim-polyglot'
 Plug 'ianks/vim-tsx'
@@ -398,18 +395,3 @@ augroup myvimrc
     autocmd QuickFixCmdPost [^l]* cwindow
     autocmd QuickFixCmdPost l*    lwindow
 augroup END
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MatchTagAlways
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:mta_filetypes = {
-    \'typescript.tsx': 1,
-    \'javascript.jsx': 1,
-    \ 'html' : 1,
-    \ 'xml' : 1,
-\}
-
-let g:mta_use_matchparen_group = 0
-let g:mta_set_default_matchtag_color = 0
-
-highlight MatchTag ctermfg=white ctermbg=NONE guifg=white guibg=NONE
